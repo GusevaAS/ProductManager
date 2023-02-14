@@ -50,4 +50,17 @@ class ProductRepositoryTest {
         Product[] expected = {phone1, phone3, book1, book3};
         Assertions.assertArrayEquals(actual, expected);
     }
+
+    @Test
+    void removeNotRealId() {
+        repo.add(phone1);
+        repo.add(phone2);
+        repo.add(phone3);
+        repo.add(book1);
+        repo.add(book2);
+        repo.add(book3);
+
+        Assertions.assertThrows(NotFoundException.class,
+                () -> repo.removeById(999));
+    }
 }
